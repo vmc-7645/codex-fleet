@@ -1,0 +1,27 @@
+# Node / Raycast extension
+node_modules/
+dist/
+build/
+.raycast/
+*.tsbuildinfo
+
+# Logs / env
+*.log
+.env
+.env.local
+
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Raycast generated
+extension/raycast-env.d.ts
+
+# Python helper tests
+__pycache__/
+*.pyc

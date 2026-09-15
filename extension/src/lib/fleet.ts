@@ -1,0 +1,53 @@
+// Optional enrichment from the fleet hook: ~/.codex/fleet/<sessionId>.json
+// (written by helpers/hooks/fleet-register.sh). Adds finer state (waiting/done),
+// the task label, diff, and last tool. SPEC §6.1a.
+
+import { readFileSync, readdirSync, unlinkSync } from "fs";
+import { FLEET_DIR } from "./paths";
+import { join } from "path";
+
+export interface FleetEntry {
+  state?: string; // working | waiting | done | idle
+  stateReason?: string;
+  task?: string;
+  diff?: string;
+  lastTool?: string;
+  branch?: string;
+  mode?: string; // default | plan | acceptEdits | bypassPermissions
+}
+
+export function readFleetEntry(sessionId: string): FleetEntry | undefined {
+  try {
+    const j = JSON.parse(
+      readFileSync(join(FLEET_DIR, `${sessionId}.json`), "utf8"),
+    );
+    return {
+      state: typeof j.state === "string" ? j.state : undefined,
+      stateReason: j.state_reason || undefined,
+      task: j.task || undefined,
+      diff: j.diff || undefined,
+      lastTool: j.last_tool || undefined,
+      branch: j.branch || undefined,
+      mode: j.mode || undefined,
+    };
+  } catch {
+    return undefined;
+  }
+}
+
+// Remove fleet files whose session is neither live nor in history (SPEC §11).
+export function cleanupStaleFleet(keepIds: Set<string>): number {
+  let removed = 0;
+  try {
+    for (const f of readdirSync(FLEET_DIR)) {
+      if (!f.endsWith(".json")) continue;
+      if (!keepIds.has(f.replace(/\.json$/, ""))) {
+        unlinkSync(join(FLEET_DIR, f));
+        removed++;
+      }
+    }
+  } catch {
+    // nothing to clean
+  }
+  return removed;
+}

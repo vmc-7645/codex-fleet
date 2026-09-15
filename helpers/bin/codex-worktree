@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#
+# codex-worktree <branch> [dir-name]
+#
+# Create (or attach to) a git worktree for <branch> and open it in a NEW GHOSTTY
+# TAB running `codex` — one command to spin up an isolated agent per branch.
+#
+# Worktrees are placed alongside the main repo following the convention:
+#   <parent>/<repo>-worktrees/<dir-name>
+# e.g. from ~/Repos/myrepo, branch feat/foo -> ~/Repos/myrepo-worktrees/foo
+#
+# <dir-name> defaults to the last path segment of <branch>.
+# A brand-new branch is forked from the current HEAD.
+set -euo pipefail
+
+die() { printf 'codex-worktree: %s\n' "$1" >&2; exit "${2:-1}"; }
+
+branch="${1:-}"
+[ -n "$branch" ] || die "usage: codex-worktree <branch> [dir-name]" 2
+
+command -v git >/dev/null || die "git not found"
+git rev-parse --git-dir >/dev/null 2>&1 || die "not inside a git repository"
+
+git check-ref-format --branch "$branch" >/dev/null || die "invalid branch name"
+dir_name="${2:-$(basename "$branch")}" 
+case "$dir_name" in ""|.|..|*/*) die "dir-name must be a single directory name" ;; esac
+
+# Resolve the MAIN repo (works even when run from inside another worktree) via
+# the common git dir, whose parent is the primary working tree.
+common_git="$(git rev-parse --path-format=absolute --git-common-dir)"
+main_repo="$(dirname "$common_git")"
+repo_name="$(basename "$main_repo")"
+wt_dir="$(dirname "$main_repo")/${repo_name}-worktrees/${dir_name}"
+
+if [ -d "$wt_dir" ]; then
+  actual="$(git -C "$wt_dir" branch --show-current 2>/dev/null || true)"
+  [ "$actual" = "$branch" ] || die "existing directory is not on requested branch: $wt_dir"
+  expected_common="$(git -C "$wt_dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+  [ "$expected_common" = "$common_git" ] || die "existing directory belongs to another repository"
+  echo "→ reusing existing worktree dir: $wt_dir"
+else
+  mkdir -p "$(dirname "$wt_dir")"
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "→ checking out existing local branch '$branch'"
+    git worktree add "$wt_dir" "$branch"
+  elif git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+    echo "→ tracking remote branch 'origin/$branch'"
+    git fetch -q origin "$branch"
+    git worktree add "$wt_dir" -b "$branch" --track "origin/$branch"
+  else
+    echo "→ creating new branch '$branch' from $(git rev-parse --abbrev-ref HEAD)"
+    git worktree add "$wt_dir" -b "$branch"
+  fi
+fi
+
+# When CODEX_WT_NO_OPEN is set, the caller (the Raycast extension) opens the tab
+# itself so it can pick the window by project affinity — we just create the
+# worktree and report its path on a stable, parseable line.
+if [ -n "${CODEX_WT_NO_OPEN:-}" ]; then
+  printf 'CODEX_WT_DIR=%s\n' "$wt_dir"
+  exit 0
+fi
+
+# Open the worktree in a new Ghostty tab and start codex. Ghostty has no CLI to
+# open a tab on macOS, so we drive the app: focus it, send the new-tab keystroke,
+# then type the command. (First run may prompt for Accessibility permission.)
+# If CODEX_WT_PROMPT is set, launch codex with it as the opening prompt.
+if [ -n "${CODEX_WT_PROMPT:-}" ]; then
+  typed="cd $(printf '%q' "$wt_dir") && codex $(printf '%q' "$CODEX_WT_PROMPT")"
+else
+  typed="cd $(printf '%q' "$wt_dir") && codex"
+fi
+osascript - "$typed" >/dev/null <<'APPLESCRIPT'
+on run argv
+  set theCmd to item 1 of argv
+  tell application "Ghostty" to activate
+  delay 0.25
+  tell application "System Events"
+    keystroke "t" using {command down}
+    delay 0.7
+    keystroke theCmd
+    key code 36
+  end tell
+end run
+APPLESCRIPT
+
+echo "→ opened new Ghostty tab in $wt_dir running codex"

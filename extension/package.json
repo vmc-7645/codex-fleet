@@ -1,0 +1,257 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "codex-fleet",
+  "title": "Codex Fleet",
+  "description": "See and resume your Codex agents, and review PRs \u2014 from Raycast.",
+  "icon": "icon.png",
+  "author": "vmc-7645",
+  "license": "MIT",
+  "categories": [
+    "Developer Tools",
+    "Productivity"
+  ],
+  "keywords": [
+    "codex",
+    "codex code",
+    "agents",
+    "ghostty",
+    "worktree",
+    "pull requests"
+  ],
+  "preferences": [
+    {
+      "name": "terminalApp",
+      "type": "dropdown",
+      "title": "Terminal",
+      "description": "Where agents open. Focus Tab / Nudge / Close Tab need Ghostty (per-tab accessibility); other terminals still get Resume/Fork/Review/Spawn/etc.",
+      "default": "ghostty",
+      "required": false,
+      "data": [
+        {
+          "title": "Ghostty",
+          "value": "ghostty"
+        },
+        {
+          "title": "iTerm2",
+          "value": "iterm"
+        },
+        {
+          "title": "Apple Terminal",
+          "value": "terminal"
+        }
+      ]
+    },
+    {
+      "name": "primaryClick",
+      "type": "dropdown",
+      "title": "Agent primary action",
+      "description": "What Enter does on a live agent in the Agents list.",
+      "default": "focus",
+      "required": false,
+      "data": [
+        {
+          "title": "Focus Tab",
+          "value": "focus"
+        },
+        {
+          "title": "Resume in New Tab",
+          "value": "resume"
+        }
+      ]
+    },
+    {
+      "name": "editorCommand",
+      "type": "textfield",
+      "title": "Editor command",
+      "description": "CLI command to open a folder in your editor (e.g. code, cursor). Must be on PATH.",
+      "default": "code",
+      "required": false
+    },
+    {
+      "name": "reposRoot",
+      "type": "textfield",
+      "title": "Repos directory",
+      "description": "Override where repos are discovered. Blank = use ~/.config/codex-fleet/repos.env or ~/Repos.",
+      "default": "",
+      "required": false
+    },
+    {
+      "name": "quickReplies",
+      "type": "textfield",
+      "title": "Quick replies",
+      "description": "Comma-separated canned follow-ups for the Quick Reply action on a live agent (Ghostty only).",
+      "default": "Continue, Run the tests, Looks good \u2014 commit",
+      "required": false
+    },
+    {
+      "name": "tabOpenMode",
+      "type": "dropdown",
+      "title": "Open agents as",
+      "description": "Ghostty only. Tab: reuse a window already hosting the same project (else the frontmost window), opening a new tab. Window: always open a fresh Ghostty window.",
+      "default": "tab",
+      "required": false,
+      "data": [
+        {
+          "title": "Tab in an existing window",
+          "value": "tab"
+        },
+        {
+          "title": "New window",
+          "value": "window"
+        }
+      ]
+    },
+    {
+      "name": "tabOpenDelay",
+      "type": "textfield",
+      "title": "Tab open delay (s)",
+      "description": "Ghostty only. Seconds to wait after opening a tab/window before the command is pasted in. Default 0.3 is tuned for the paste path; raise it only if an agent occasionally opens in the right folder but doesn't start.",
+      "default": "0.3",
+      "required": false
+    },
+    {
+      "name": "stuckMinutes",
+      "type": "textfield",
+      "title": "Stalled agent threshold (min)",
+      "description": "Flag an agent that's still \"working\" but hasn't updated in this many minutes as possibly stuck/hung in the Agents list. Raise it if long builds trip it.",
+      "default": "20",
+      "required": false
+    }
+  ],
+  "commands": [
+    {
+      "name": "agents",
+      "title": "Agents",
+      "subtitle": "Codex Fleet",
+      "description": "See active and recent Codex agents; resume, fork, or jump to them.",
+      "mode": "view",
+      "icon": "cmd/agents.svg"
+    },
+    {
+      "name": "next-agent",
+      "title": "Next Waiting Agent",
+      "subtitle": "Codex Fleet",
+      "description": "Focus the agent that's been waiting on you longest. Assign a hotkey; off by default.",
+      "mode": "no-view",
+      "disabledByDefault": true,
+      "icon": "cmd/next-agent.svg"
+    },
+    {
+      "name": "my-prs",
+      "title": "My PRs",
+      "subtitle": "Codex Fleet",
+      "description": "Your open PRs across repos; review any of them in Codex.",
+      "mode": "view",
+      "icon": "cmd/my-prs.svg"
+    },
+    {
+      "name": "review-requests",
+      "title": "PRs to Review",
+      "subtitle": "Codex Fleet",
+      "description": "Open PRs awaiting your review; start a Codex PR review.",
+      "mode": "view",
+      "icon": "cmd/review-requests.svg"
+    },
+    {
+      "name": "spawn",
+      "title": "Spawn Agent",
+      "subtitle": "Codex Fleet",
+      "description": "Spawn a Codex agent in a fresh worktree from a task.",
+      "mode": "view",
+      "icon": "cmd/spawn.svg"
+    },
+    {
+      "name": "review-pr",
+      "title": "Review PR",
+      "subtitle": "Codex Fleet",
+      "description": "Open Codex to review a PR in a chosen repo.",
+      "mode": "view",
+      "icon": "cmd/review-pr.svg"
+    },
+    {
+      "name": "my-issues",
+      "title": "My Issues",
+      "subtitle": "Codex Fleet",
+      "description": "Your open issues across repos; start an agent on one.",
+      "mode": "view",
+      "icon": "cmd/my-issues.svg"
+    },
+    {
+      "name": "worktrees",
+      "title": "Worktrees",
+      "subtitle": "Codex Fleet",
+      "description": "List git worktrees across your repos; open, resume, or remove.",
+      "mode": "view",
+      "icon": "cmd/worktrees.svg"
+    },
+    {
+      "name": "mcp",
+      "title": "MCP Servers",
+      "subtitle": "Codex Fleet",
+      "description": "List MCP servers + auth status; re-authenticate.",
+      "mode": "view",
+      "icon": "cmd/mcp.svg"
+    },
+    {
+      "name": "skills",
+      "title": "Skills",
+      "subtitle": "Codex Fleet",
+      "description": "Manage your personal Codex skills.",
+      "mode": "view",
+      "icon": "cmd/skills.svg"
+    },
+    {
+      "name": "usage",
+      "title": "Usage",
+      "subtitle": "Codex Fleet",
+      "description": "Recorded token usage per Codex session.",
+      "mode": "view",
+      "icon": "cmd/usage.svg"
+    },
+    {
+      "name": "codex-config",
+      "title": "Codex Config",
+      "subtitle": "Codex Fleet",
+      "description": "Edit config.toml/AGENTS.md, view hooks/plugins, set model, doctor, version.",
+      "mode": "view",
+      "icon": "cmd/codex-config.svg"
+    },
+    {
+      "name": "new-session",
+      "title": "New Session",
+      "subtitle": "Codex Fleet",
+      "description": "Start a fresh Codex session in a repo (no worktree).",
+      "mode": "view",
+      "icon": "cmd/new-session.svg"
+    },
+    {
+      "name": "fleet-menu-bar",
+      "title": "Fleet",
+      "subtitle": "Codex Fleet",
+      "description": "Menu-bar indicator of Codex agents needing you.",
+      "mode": "menu-bar",
+      "interval": "1m"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.80.0",
+    "@raycast/utils": "^1.17.0",
+    "smol-toml": "^1.4.2"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.10",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "build": "ray build -e dist -o dist",
+    "dev": "ray develop",
+    "lint": "ray lint",
+    "fix-lint": "ray lint --fix",
+    "test": "vitest run"
+  }
+}

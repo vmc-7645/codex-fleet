@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="Codex Fleet">
+  <defs>
+    <linearGradient id="clay" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18364b"/><stop offset="1" stop-color="#0c1827"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="360" rx="28" fill="url(#clay)"/>
+  <g transform="translate(915,20) scale(3.5)" opacity="0.1"><path d="M20 24 L44 47 L20 70 M52 70 H80" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g transform="translate(104,96) scale(1.78)" opacity="1"><path d="M20 24 L44 47 L20 70 M52 70 H80" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" fill="#ffffff">
+    <text x="322" y="176" font-size="76" font-weight="800" letter-spacing="-1">Codex Fleet</text>
+    <text x="326" y="224" font-size="27" opacity="0.94">Your Codex agents, PRs, and worktrees — one keystroke away.</text>
+    <text x="326" y="262" font-size="18" opacity="0.72" letter-spacing="2">RAYCAST · MACOS · GHOSTTY</text>
+  </g>
+</svg>
