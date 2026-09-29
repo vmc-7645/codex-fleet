@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="fleet" x1="52.5" y1="128" x2="52.5" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101b2b"/><stop offset="1" stop-color="#35b89a"/></linearGradient>
+    <clipPath id="clip"><rect width="128" height="128" rx="30" fill="#fff"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="128" height="128" rx="30" fill="url(#fleet)"/>
+    <rect opacity="0.35" width="128" height="128" fill="#35b89a"/>
+    <path d="M24 32 L52 60 L24 88 M66 88 H102" fill="none" stroke="#FAF9F5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(54.400000000000006,54.400000000000006) scale(2.8)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#ffffff" stroke-width="8"><circle cx="18" cy="18" r="3" />
+  <circle cx="6" cy="6" r="3" />
+  <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+  <line x1="6" x2="6" y1="9" y2="21" /></g>
+    <g stroke="#2563EB" stroke-width="3.75"><circle cx="18" cy="18" r="3" />
+  <circle cx="6" cy="6" r="3" />
+  <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+  <line x1="6" x2="6" y1="9" y2="21" /></g>
+  </g>
+</svg>

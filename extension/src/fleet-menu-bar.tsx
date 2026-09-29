@@ -53,7 +53,7 @@ export default function Command() {
   // light bar, white on a dark bar. The count carries the "needs you" signal.
   // See assets/NOTICE.md.
   const icon = {
-    source: { light: "codex-spark-dark.svg", dark: "codex-spark-light.svg" },
+    source: { light: "menu-bar-light.svg", dark: "menu-bar-dark.svg" },
   };
 
   return (

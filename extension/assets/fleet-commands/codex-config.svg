@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="fleet" x1="52.5" y1="128" x2="52.5" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101b2b"/><stop offset="1" stop-color="#35b89a"/></linearGradient>
+    <clipPath id="clip"><rect width="128" height="128" rx="30" fill="#fff"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="128" height="128" rx="30" fill="url(#fleet)"/>
+    <rect opacity="0.35" width="128" height="128" fill="#35b89a"/>
+    <path d="M24 32 L52 60 L24 88 M66 88 H102" fill="none" stroke="#FAF9F5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(54.400000000000006,54.400000000000006) scale(2.8)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#ffffff" stroke-width="8"><path d="M10 5H3" />
+  <path d="M12 19H3" />
+  <path d="M14 3v4" />
+  <path d="M16 17v4" />
+  <path d="M21 12h-9" />
+  <path d="M21 19h-5" />
+  <path d="M21 5h-7" />
+  <path d="M8 10v4" />
+  <path d="M8 12H3" /></g>
+    <g stroke="#475569" stroke-width="3.75"><path d="M10 5H3" />
+  <path d="M12 19H3" />
+  <path d="M14 3v4" />
+  <path d="M16 17v4" />
+  <path d="M21 12h-9" />
+  <path d="M21 19h-5" />
+  <path d="M21 5h-7" />
+  <path d="M8 10v4" />
+  <path d="M8 12H3" /></g>
+  </g>
+</svg>

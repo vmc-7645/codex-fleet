@@ -3,7 +3,7 @@
   "name": "codex-fleet",
   "title": "Codex Fleet",
   "description": "See and resume your Codex agents, and review PRs \u2014 from Raycast.",
-  "icon": "icon.png",
+  "icon": "fleet-icon.png",
   "author": "vmc-7645",
   "license": "MIT",
   "categories": [
@@ -125,7 +125,7 @@
       "subtitle": "Codex Fleet",
       "description": "See active and recent Codex agents; resume, fork, or jump to them.",
       "mode": "view",
-      "icon": "cmd/agents.svg"
+      "icon": "fleet-commands/agents.svg"
     },
     {
       "name": "next-agent",
@@ -134,7 +134,7 @@
       "description": "Focus the agent that's been waiting on you longest. Assign a hotkey; off by default.",
       "mode": "no-view",
       "disabledByDefault": true,
-      "icon": "cmd/next-agent.svg"
+      "icon": "fleet-commands/next-agent.svg"
     },
     {
       "name": "my-prs",
@@ -142,7 +142,7 @@
       "subtitle": "Codex Fleet",
       "description": "Your open PRs across repos; review any of them in Codex.",
       "mode": "view",
-      "icon": "cmd/my-prs.svg"
+      "icon": "fleet-commands/my-prs.svg"
     },
     {
       "name": "review-requests",
@@ -150,7 +150,7 @@
       "subtitle": "Codex Fleet",
       "description": "Open PRs awaiting your review; start a Codex PR review.",
       "mode": "view",
-      "icon": "cmd/review-requests.svg"
+      "icon": "fleet-commands/review-requests.svg"
     },
     {
       "name": "spawn",
@@ -158,7 +158,7 @@
       "subtitle": "Codex Fleet",
       "description": "Spawn a Codex agent in a fresh worktree from a task.",
       "mode": "view",
-      "icon": "cmd/spawn.svg"
+      "icon": "fleet-commands/spawn.svg"
     },
     {
       "name": "review-pr",
@@ -166,7 +166,7 @@
       "subtitle": "Codex Fleet",
       "description": "Open Codex to review a PR in a chosen repo.",
       "mode": "view",
-      "icon": "cmd/review-pr.svg"
+      "icon": "fleet-commands/review-pr.svg"
     },
     {
       "name": "my-issues",
@@ -174,7 +174,7 @@
       "subtitle": "Codex Fleet",
       "description": "Your open issues across repos; start an agent on one.",
       "mode": "view",
-      "icon": "cmd/my-issues.svg"
+      "icon": "fleet-commands/my-issues.svg"
     },
     {
       "name": "worktrees",
@@ -182,7 +182,7 @@
       "subtitle": "Codex Fleet",
       "description": "List git worktrees across your repos; open, resume, or remove.",
       "mode": "view",
-      "icon": "cmd/worktrees.svg"
+      "icon": "fleet-commands/worktrees.svg"
     },
     {
       "name": "mcp",
@@ -190,7 +190,7 @@
       "subtitle": "Codex Fleet",
       "description": "List MCP servers + auth status; re-authenticate.",
       "mode": "view",
-      "icon": "cmd/mcp.svg"
+      "icon": "fleet-commands/mcp.svg"
     },
     {
       "name": "skills",
@@ -198,7 +198,7 @@
       "subtitle": "Codex Fleet",
       "description": "Manage your personal Codex skills.",
       "mode": "view",
-      "icon": "cmd/skills.svg"
+      "icon": "fleet-commands/skills.svg"
     },
     {
       "name": "usage",
@@ -206,7 +206,7 @@
       "subtitle": "Codex Fleet",
       "description": "Recorded token usage per Codex session.",
       "mode": "view",
-      "icon": "cmd/usage.svg"
+      "icon": "fleet-commands/usage.svg"
     },
     {
       "name": "codex-config",
@@ -214,7 +214,7 @@
       "subtitle": "Codex Fleet",
       "description": "Edit config.toml/AGENTS.md, view hooks/plugins, set model, doctor, version.",
       "mode": "view",
-      "icon": "cmd/codex-config.svg"
+      "icon": "fleet-commands/codex-config.svg"
     },
     {
       "name": "new-session",
@@ -222,7 +222,7 @@
       "subtitle": "Codex Fleet",
       "description": "Start a fresh Codex session in a repo (no worktree).",
       "mode": "view",
-      "icon": "cmd/new-session.svg"
+      "icon": "fleet-commands/new-session.svg"
     },
     {
       "name": "fleet-menu-bar",

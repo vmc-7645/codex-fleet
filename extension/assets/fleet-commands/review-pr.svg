@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="fleet" x1="52.5" y1="128" x2="52.5" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101b2b"/><stop offset="1" stop-color="#35b89a"/></linearGradient>
+    <clipPath id="clip"><rect width="128" height="128" rx="30" fill="#fff"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="128" height="128" rx="30" fill="url(#fleet)"/>
+    <rect opacity="0.35" width="128" height="128" fill="#35b89a"/>
+    <path d="M24 32 L52 60 L24 88 M66 88 H102" fill="none" stroke="#FAF9F5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(54.400000000000006,54.400000000000006) scale(2.8)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#ffffff" stroke-width="8"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <circle cx="11.5" cy="14.5" r="2.5" />
+  <path d="M13.3 16.3 15 18" /></g>
+    <g stroke="#0D9488" stroke-width="3.75"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <circle cx="11.5" cy="14.5" r="2.5" />
+  <path d="M13.3 16.3 15 18" /></g>
+  </g>
+</svg>
